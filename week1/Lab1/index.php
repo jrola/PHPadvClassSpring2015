@@ -6,106 +6,17 @@
         <title></title>
     </head>
     <body>
-        
-        
         <?php
-       
-        /* Start by creating the classes and files you need
-         * 
-         */
-        $util = new Util();
-        $validator = new Validator();   
-
-        /*
-         * When dealing with forms always collect the data before trying to validate
-         * 
-         * When getting values from $_POST or $_GET use filter_input
-         */
-        $emailType = filter_input(INPUT_POST, 'emailtype');
-
-        // We use errors to add issues to notify the user
-        $errors = array();
-
-        /*
-         * We setup this config to get a standard database setup for the page
-         */
-        $dbConfig = array(
-                "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',
-                "DB_USER"=>'root',
-                "DB_PASSWORD"=>''
-                );
-
-        $pdo = new DB($dbConfig);
-        $db = $pdo->getDB();
-
-        /*
-         * we utilize our classes to have less code on the page
-         * 
-         */
-        if ( $util->isPostRequest() ) 
-        {
-         // we validate only if a post has been made
-            if ( !$validator->emailTypeIsValid($emailType) ) 
-            {
-                $errors[] = 'Email type is not valid';
-            }
-
-
-            // if there are errors display them
-            if ( count($errors) > 0 ) 
-            {
-                foreach ($errors as $value) 
-                {
-                    echo '<p>',$value,'</p>';
-                }
-            } 
-            else 
-            {
-                //if no errors, save to to database.
-
-                $stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype");  
-
-                $values = array(":emailtype"=>$emailType);
-
-                if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) 
-                {
-                    echo 'Email Added';
-                }      
-            }
-        }
-
+            $emailType = filter_input(INPUT_POST, 'emailtype');
         ?>
-        
-         <h3>Add Email type</h3>
+        <h3>Add Email type</h3>
         <form action="#" method="post">
             <label>Email Type:</label> 
             <input type="text" name="emailtype" value="<?php echo $emailType; ?>" placeholder="" />
             <input type="submit" value="Submit" />
         </form>
-         
-         
-    <?php 
-       
-    // lets get the database values and display them
-    $stmt = $db->prepare("SELECT * FROM emailtype where active = 1");
-
-    if ($stmt->execute() && $stmt->rowCount() > 0) {
-        /*
-         * There is fetchAll which gets all the values and
-         * fetch which gets one row.
-         */
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // results returns as a assoc array
-        // you can run the next line to see the variable
-        // var_dump($results)
-        foreach ($results as $value) {
-            echo '<strong><p>', $value['emailtype'], '</p></strong>';
-        }
-    } else {
-        echo '<p>No Data</p>';
-    }
-    ?>
-          
+        <?php 
+            $emailTypeService->displayEmails();
+        ?>          
     </body>
 </html>
