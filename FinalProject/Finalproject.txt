@@ -1,0 +1,15 @@
+Jack Rola, Tom Nunez
+PHP Proposal 
+
+We are building a photo bucket application.  The application will have a log in so the users will be able to log in and post their photos. The users will be able to add photos update photos and finally delete them.
+Project Items
+•	Sign up
+•	Login
+•	Add Photos
+•	Delete Photos
+•	And Update Photos
+Tom will be responsible for bullet # 3,4,5
+
+Jack will be responsible for bullet # 1,2 
+
+This project will take about 4 to 5 weeks to complete. 
