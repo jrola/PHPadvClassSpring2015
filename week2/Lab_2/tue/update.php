@@ -11,6 +11,7 @@ include './bootstrap.php'; ?>
           <a href="EmailTest.php">EmailTest</a><br/>
         <?php
         
+        
         $dbConfig = array(
             "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',
             "DB_USER"=>'root',
