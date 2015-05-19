@@ -38,7 +38,7 @@ class EmailtypeRequest implements IRequest {
     
     public function GET( IModel $model ) {
         $id = intval($model->getId());
-        
+//        var_dump($model);
         if ( $id > 0 ) { 
             if ( $this->service->idExist($model->getId()) ) {
                 return $this->service->read($model->getId())->getAllPropteries();

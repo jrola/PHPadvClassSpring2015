@@ -13,3 +13,26 @@
 [5540078a84be0]	[exception]	[04-29-2015 12:19am]	Invalid credentials
 [55400ce778084]	[exception]	[04-29-2015 12:42am]	New Phone Type Not Created
 [55400f32794d4]	[exception]	[04-29-2015 12:52am]	Invalid credentials
+[555298ae7ec9e]	[exception]	[05-13-2015 2:19am]	11 ID Email Type Not Deleted
+[555298be2f2ce]	[exception]	[05-13-2015 2:20am]	15 ID Email Not Deleted
+[555298c20789f]	[exception]	[05-13-2015 2:20am]	15 ID Email Not Deleted
+[555298c20789f]	[exception]	[05-13-2015 2:20am]	15 ID Email Not Deleted
+[555298c20b58f]	[exception]	[05-13-2015 2:20am]	15 ID Email Not Deleted
+[555298c240ab2]	[exception]	[05-13-2015 2:20am]	15 ID Email Not Deleted
+[555298c240ab2]	[exception]	[05-13-2015 2:20am]	15 ID Email Not Deleted
+[555298c262f24]	[exception]	[05-13-2015 2:20am]	15 ID Email Not Deleted
+[555298c290a66]	[exception]	[05-13-2015 2:20am]	15 ID Email Not Deleted
+[555299b436f57]	[exception]	[05-13-2015 2:24am]	New Email Not Created
+[555299b57bbcc]	[exception]	[05-13-2015 2:24am]	New Email Not Created
+[555299b580c44]	[exception]	[05-13-2015 2:24am]	New Email Not Created
+[555299b5afb0f]	[exception]	[05-13-2015 2:24am]	New Email Not Created
+[555299b5b41c3]	[exception]	[05-13-2015 2:24am]	New Email Not Created
+[555299c744b0d]	[exception]	[05-13-2015 2:24am]	13 ID Email Not Deleted
+[55529acfd3aef]	[exception]	[05-13-2015 2:29am]	2 ID Email Type Not Deleted
+[55529ad03b8f8]	[exception]	[05-13-2015 2:29am]	New Email Type Not Updated for id 2
+[55529aec8fbfe]	[exception]	[05-13-2015 2:29am]	New Email Type Not Updated for id 2
+[55529aec90f87]	[exception]	[05-13-2015 2:29am]	2 ID Email Type Not Deleted
+[55529db5872ee]	[exception]	[05-13-2015 2:41am]	2 ID Email Type Not Deleted
+[55529ec04b02f]	[exception]	[05-13-2015 2:45am]	New Email Type Not Created
+[55529f1d3c9d1]	[exception]	[05-13-2015 2:47am]	2 ID Email Type Not Deleted
+[55529f3367927]	[exception]	[05-13-2015 2:47am]	2 ID Email Type Not Deleted

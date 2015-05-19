@@ -1,8 +1,8 @@
 <?php
 /**
- * Description of EmailRequest
+ * Description of PhoneRequest
  *
- * @author 000847713
+ * @author User
  */
 
 namespace API\models\services;
@@ -11,7 +11,7 @@ use API\models\interfaces\IRequest;
 use API\models\interfaces\IService;
 use API\models\interfaces\IModel;
 
-class EmailRequest implements IRequest {
+class PhoneRequest implements IRequest {
      protected $service;
             
     public function __construct( IService $service) {
@@ -19,24 +19,24 @@ class EmailRequest implements IRequest {
     }
     
     public function POST( IModel $model ) { 
-        $emailModel = $this->service->getNewEmailModel();
-        $emailModel->map($model->getRequestData());
-        if ( $this->service->create($emailModel) ) {
+        $phoneModel = $this->service->getNewPhoneModel();
+        $phoneModel->map($model->getRequestData());
+        if ( $this->service->create($phoneModel) ) {
             throw new ContentCreatedException('Created');           
         }
-        $errors = $this->service->validate($emailModel);
+        $errors = $this->service->validate($phoneModel);
         
         if ( count($errors) > 0 ) {
-            throw new ValidationException($errors, 'New Email Not Created');
+            throw new ValidationException($errors, 'New Phone Not Created');
         }
-        throw new ConflictRequestException('New Email Not Created');
+        throw new ConflictRequestException('New Phone Not Created');
     }
     
     public function GET( IModel $model ) {
         $id = intval($model->getId());
         
         if ( $id > 0 ) { 
-            if ( $this->service->idExisit($model->getId()) ) {
+            if ( $this->service->idExist($model->getId()) ) {
                 return $this->service->read($model->getId())->getAllPropteries();
             } else {
                 throw new NoContentRequestException($id . ' ID does not exist');
@@ -54,18 +54,25 @@ class EmailRequest implements IRequest {
     
     public function PUT( IModel $model ) {
         $id = intval($model->getId());
-        $emailModel = $this->service->getNewEmailModel();
-        $emailModel->map($model->getRequestData());
-        $emailModel->setEmailid($id);
+        $phoneModel = $this->service->getNewPhoneModel();
+        $phoneModel->map($model->getRequestData());
+        $phoneModel->setPhoneid($id);
         
         if ( !$this->service->idExist($id) ) {
             throw new NoContentRequestException($id . ' ID does not exist');
         }
         
-        if ( $this->service->update($emailModel) ) {
+        if ( $this->service->update($phoneModel) ) {
             throw new ContentCreatedException('Created');           
         }
-        throw new ConflictRequestException('New Email Not Updated for id ' . $id);
+                
+        $errors = $this->service->validate($phoneModel);
+        
+        if ( count($errors) > 0 ) {
+            throw new ValidationException($errors, 'Phone Not Updated');
+        }        
+        
+        throw new ConflictRequestException('New Phone Not Updated for id ' . $id);
     }
     
     public function DELETE( IModel $model ) {
@@ -73,6 +80,6 @@ class EmailRequest implements IRequest {
         if ( $this->service->delete($id) ) {
             return null;          
         }
-        throw new ConflictRequestException($id . ' ID Email Not Deleted');
+        throw new ConflictRequestException($id . ' ID Phone Not Deleted');
     }
 }

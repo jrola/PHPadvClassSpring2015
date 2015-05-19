@@ -62,6 +62,10 @@ class EmailService implements IService {
         
     }
     
+    public function idExisit($id) {
+        return $this->getEmailDAO()->idExisit($id);
+    }
+    
      public function getAllRows() {       
         return $this->getEmailDAO()->getAllRows();   
         
