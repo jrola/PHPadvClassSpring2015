@@ -36,3 +36,4 @@
 [55529ec04b02f]	[exception]	[05-13-2015 2:45am]	New Email Type Not Created
 [55529f1d3c9d1]	[exception]	[05-13-2015 2:47am]	2 ID Email Type Not Deleted
 [55529f3367927]	[exception]	[05-13-2015 2:47am]	2 ID Email Type Not Deleted
+[5564ec876b02f]	[exception]	[05-26-2015 11:58pm]	New Email Not Updated for id 14
