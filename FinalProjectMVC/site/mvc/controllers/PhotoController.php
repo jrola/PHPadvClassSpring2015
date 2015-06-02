@@ -40,6 +40,9 @@ class PhotoController extends BaseController implements IController {
                 $images=$this->service->getuserimages($this->data['model']);
                 $this->data['directories']=$this->service->getImages($this->data['model'],$images);               
             }
+        }else{
+            $images=$this->service->getuserimages($this->data['model']);
+            $this->data['directories']=$this->service->getImages($this->data['model'],$images);     
         }
         $scope->view = $this->data;
         return $this->view($viewPage,$scope);

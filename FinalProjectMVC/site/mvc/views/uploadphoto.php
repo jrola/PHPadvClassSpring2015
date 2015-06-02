@@ -54,16 +54,22 @@
             </div>
         </div>
     </form>
-    <div class="jcarousel-wrapper">
-        <div class="jcarousel">
-            <ul>              
-                <?php
-                    foreach ($scope->view['directories'] as $value) {
-                        echo '<li><img src='.$value["Directory"].' width="300" height="300" alt=""></li>';
-                    }           
-                ?>
-            </ul>
+    
+    <div class="form-group">
+        <div class="col-sm-4 col-sm-offset-4">
+            <div class="jcarousel-wrapper">
+                <div class="jcarousel">
+                    <ul>              
+                        <?php
+                            foreach ($scope->view['directories'] as $value) {
+                                echo '<li><img src='.$value["Directory"].' width="300" height="300" alt=""></li>';
+                            }           
+                        ?>
+                    </ul>
+                </div>
+            </div>
         </div>
+      
         
         <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
         <a href="#" class="jcarousel-control-next">&rsaquo;</a>

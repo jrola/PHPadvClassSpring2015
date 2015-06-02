@@ -59,7 +59,8 @@
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <input type="hidden" name="action" value="get" />
-                        <button type="submit" value="submit" class="form-control">
+                        <br />
+                        <button type="submit" value="submit" class="btn btn-default btn-lg" >
                             Submit
                         </button>
                     </div>
