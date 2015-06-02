@@ -11,78 +11,78 @@ namespace App\models\services;
 
 class SignupModel extends BaseModel {
     
-    private $userid;
-    private $email;
-    private $password;
-    private $firstname;
-    private $lastname;
-    private $address;
-    private $city;
-    private $state;
-    private $zip;
+    private $UserID;
+    private $Email;
+    private $Password;
+    private $FirstName;
+    private $LastName;
+    private $Address;
+    private $City;
+    private $State;
+    private $Zip;
     
     function getUserID() {
-        return $this->userid;
+        return $this->UserID;
     }    
     function getEmail() {
-        return $this->email;
+        return $this->Email;
     }
     function getPassword(){
-        return $this->password;
+        return $this->Password;
     }
     function getFirstName() {
-        return $this->firstname;
+        return $this->FirstName;
     }
     function getLastName() {
-        return $this->lastname;
+        return $this->LastName;
     }
     
      function getAddress() {
-        return $this->address;
+        return $this->Address;
     }
 
     function getCity() {
-        return $this->city;
+        return $this->City;
     }
 
     function getState() {
-        return $this->state;
+        return $this->State;
     }
 
     function getZip() {
-        return $this->zip;
+        return $this->Zip;
     }
         
     function setEmail($email) {
-        $this->username = $email;
+        $this->Email = $email;
     }
 
     function setPassword($password) {
-        $this->password = $password;
+        $this->Password = $password;
     }
 
     function setFirstName($firstname) {
-        $this->firstname = $firstname;
+        $this->FirstName = $firstname;
     }
 
     function setLastName($lastname) {
-        $this->lastname = $lastname;
+        $this->LastName = $lastname;
     }
 
     function setAddress($address) {
-        $this->address = $address;
+        $this->Address = $address;
     }
     
     function setCity($city) {
-        $this->city = $city;
+        $this->City = $city;
     }
 
     function setState($state) {
-        $this->state = $state;
+        $this->State = $state;
     }
 
     function setZip($zip) {
-        $this->zip = $zip;
+        $this->Zip = $zip;
     }
     
 }

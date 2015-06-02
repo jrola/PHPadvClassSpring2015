@@ -41,7 +41,18 @@ abstract class BaseModel implements IModel {
         } 
          return $this;
     }
-    
+    public function getValues($Class) {
+        $class_vars = get_class_vars($Class);
+        $values = array();
+
+        foreach ($class_vars as $var_name => $value) {
+            $method = 'get' . $var_name;
+            $values[$var_name] = '';
+            if ( method_exists($this, $method) ) {            
+                $values[$var_name] = $this->$method();
+            }
+        }
+    }
     public function getAllValues() {
         $class_vars = get_class_vars(__CLASS__);
         $values = array();

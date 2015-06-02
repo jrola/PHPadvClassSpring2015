@@ -40,7 +40,9 @@ class PhotoService implements IService {
     function setModel(IModel $model) {
         $this->model = $model;
     }
-
+    public function insertPhoto($model) {
+        return $this->getPhotoDAO()->create($model);
+    }
     public function __construct( IDAO $photoDAO, IService $validator, IModel $model  ) {
         $this->setPhotoDAO($photoDAO);
         $this->setValidator($validator);
@@ -54,7 +56,15 @@ class PhotoService implements IService {
         }    
         return $errors;
     }
-    
+    public function photoContent(IModel $model)    {
+        return $this->getPhotoDAO()->photoContent($model);
+    }
+    public function getuserimages(IModel $model)    {
+        return $this->getPhotoDAO()->getuserImages($model);
+    }
+    public function getImages(IModel $model,$array)    {
+        return $this->getPhotoDAO()->getImages($model,$array);
+    }
     public function getNewPhotoModel() {
         return clone $this->getModel();
     }   

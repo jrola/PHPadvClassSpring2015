@@ -58,12 +58,11 @@ final class Index {
                        
             
             if (array_key_exists($class_name,$this->DI)) {                
-                $controller = $this->DI[$class_name]();                
+                $controller = $this->DI[$class_name]();  
             } else { 
-                $class_name = "APP\\controller\\$class_name";
+                $class_name = "APP\\controller\\$class_name";                
                 if (class_exists($class_name)) {
-                    $controller = new $class_name();
-                    
+                    $controller = new $class_name();                    
                 }
             }
             
@@ -202,8 +201,11 @@ final class Index {
         ->addDIController('signup', function()  use ($_signupService ){           
             return new \APP\controller\SignupController($_signupService);
         })
-        ->addDIController('photo', function() use ($_photoService){           
-            return new \APP\controller\SignupController($_photoService);
+        ->addDIController('uploadphoto', function() use ($_photoService){           
+            return new \APP\controller\PhotoController($_photoService);
+        })
+        ->addDIController('logout', function(){           
+            return new \APP\controller\LogoutController();
         })
         ;
         // run application!

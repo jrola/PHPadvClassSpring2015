@@ -54,10 +54,17 @@ class SignupService implements IService {
         $this->setModel($model);
     }
     
-    public function idExist($id) {
-        return $this->getDAO()->idExisit($id);
+    public function delete($id) {
+        return $this->getDAO()->delete($id);
     }
+    
+    public function create(IModel $model) {
         
+        if ( count($this->validate($model)) === 0 ) {
+            return $this->getDAO()->create($model);
+        }
+        return false;
+    }
     public function validate( IModel $model ) {
         $errors = array();
         if ( !$this->getValidator()->emailIsValid($model->getEmail()) ) {

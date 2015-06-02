@@ -43,58 +43,59 @@
             <!-- /.container -->
         </nav>
         <div class="container">
-            <form role="form">
+            <form role="form" method="post">
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <label for="email">Email:</label>
-                        <input type="text" name="email" class="form-control"/>
+                        <input type="text" name="Email" autocomplete="off" class="form-control" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <label for="password">Password:</label>
-                        <input type="text" name="password" class="form-control"/>
+                        <input type="password" name="Password" class="form-control" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <label for="firstname">First Name:</label>
-                        <input type="text" name="firstname" class="form-control"/>
+                        <input type="text" name="FirstName" autocomplete="off" class="form-control" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <label for="lastname">Last Name:</label>
-                        <input type="text" name="firstname" class="form-control"/>
+                        <input type="text" name="LastName" autocomplete="off" class="form-control" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <label for="address">Address:</label>
-                        <input type="text" name="address" class="form-control"/>
+                        <input type="text" name="Address" autocomplete="off" class="form-control" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <label for="city">City:</label>
-                        <input type="text" name="city" class="form-control"/>
+                        <input type="text" name="City" autocomplete="off" class="form-control" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <label for="state">State:</label>
-                        <input type="text" name="state" class="form-control"/>
+                        <input type="text" name="State" autocomplete="off" class="form-control" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <label for="zip">Zip:</label>
-                        <input type="text" name="zip" class="form-control"/>
+                        <input type="text" name="Zip" autocomplete="off" class="form-control" required/>
                     </div>
                 </div>      
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
-                        <button type="submit" class="form-control btn-default">Submit</button>
+                        <input type="hidden" name="action" value="create" />
+                        <button type="submit" value="submit" class="form-control btn-default">Submit</button>
                     </div>
                 </div>
             </form>

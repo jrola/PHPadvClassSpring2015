@@ -14,6 +14,7 @@ use App\models\interfaces\IModel;
 class LoginService implements IService {
     
     protected $loginDAO;
+    protected $photomodel;
     protected $validator;
     protected $model;
     
@@ -24,7 +25,14 @@ class LoginService implements IService {
     function setValidator($validator) {
         $this->validator = $validator;
     }                
-     
+    function getPhotoModel() {
+        return $this->photomodel;
+    }
+
+    function setPhotoModel(IModel $model) {
+        $this->photomodel = $model->map($values);
+    }  
+    
     function getLoginDAO() {
         return $this->loginDAO;
     }
@@ -46,7 +54,18 @@ class LoginService implements IService {
         $this->setValidator($validator);
         $this->setModel($model);
     }   
-    
+    public function login($model) {
+        return $this->getLoginDAO()->login($model);
+    }
+    public function getUserID($model) {
+        return $this->getLoginDAO()->getUserID($model);
+    }
+    public function successfulLogin($model) {
+        return $this->getLoginDAO()->successfulLogin($model);
+    }
+    public function unsuccessfulLogin($model) {
+        return $this->getLoginDAO()->unsuccessfulLogin($model);
+    }
     public function validate( IModel $model ) {
         $errors = array();
         if ( !$this->getValidator()->emailIsValid($model->getEmail()) ) {

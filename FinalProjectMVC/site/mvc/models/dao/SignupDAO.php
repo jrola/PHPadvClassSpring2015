@@ -20,41 +20,36 @@ class SignupDAO extends BaseDAO implements IDAO{
         $this->setModel($model);
         $this->setLog($log);
     }
-    
-    public function idExisit($id) {                
+    public function emailExist($email) {
+                
         $db = $this->getDB();
-        //passing in all parameters to verify user there isnt already another acoount
-        $stmt = $db->prepare("SELECT UserID FROM user WHERE firstname = :First AND lastname = :Last AND address = :Address1 AND city = :City AND state = :State AND zip = :Zip AND email = :Email AND password =:Password");
-        //if user id exist or a row in the database exists return true
-        if ( $stmt->execute(array(':UserID' => $id)) && $stmt->rowCount() > 0 ) {
+        $stmt = $db->prepare("SELECT Email FROM user WHERE Email = :Email");
+         
+        if ( $stmt->execute(array(':Email' => $email)) && $stmt->rowCount() > 0 ) {
             return true;
         }
-        //if there isnt any userid nor row return false
-        return false;
+         return false;
     }
-    
     public function create(IModel $model) {
                  
         $db = $this->getDB();
          
-        $binds = array( ":email" => $model->getEmail(),
-                         ":password" => $model->getPassword(),
-                         ":firstname" => $model->getFirstName(),
-                         ":lastname" => $model->getLastName(),
-                         ":address" => $model->getAddress(),
-                         ":city" => $model->getCity(),
-                         ":state" => $model->getState(),
-                         ":zip" => $model->getZip(),
+        $binds = array( ":Email" => $model->getEmail(),
+                         ":Password" => password_hash($model->getPassword(), PASSWORD_DEFAULT),
+                         ":First" => $model->getFirstName(),
+                         ":Last" => $model->getLastName(),
+                         ":Address" => $model->getAddress(),
+                         ":City" => $model->getCity(),
+                         ":State" => $model->getState(),
+                         ":Zip" => $model->getZip(),
                     );
-        //if user id exist depending on user input from login form                
-        if ( !$this->idExisit($model->getUserID()) ) {
+         if ( !$this->emailExist($model->getEmail()) ) {             
             //insert user parameters to database
-            $stmt = $db->prepare("INSERT INTO email SET firstname = :First, lastname = :Last, address = :Address1, city = :City, state = :State, zip = :Zip, email = :Email, password =:Password");
-            
+            $stmt = $db->prepare("INSERT INTO user SET FirstName = :First, LastName = :Last, Address = :Address, City = :City, State = :State, Zip = :Zip, Email = :Email, Password =:Password");          
             if ( $stmt->execute($binds) && $stmt->rowCount() > 0 ) {
-               return true;
-            }
-        }        
+                return true;
+            }  
+        }
         return false;
     }       
     /*included because of interface not in use*/

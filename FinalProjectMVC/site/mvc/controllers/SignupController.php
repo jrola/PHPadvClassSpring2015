@@ -23,17 +23,20 @@ class SignupController extends BaseController implements IController {
         $this->service = $SignupService;             
     }
     public function execute(IService $scope) {
-                
+        $viewPage = 'signup';            
         $this->data['model'] = $this->service->getNewSignupModel();
-        $this->data['model']->reset();
-        $viewPage = 'signup';        
-        
-        if ( $scope->util->isPostRequest() ) {
-            
+        $this->data['model']->reset();           
+       
+        if ( $scope->util->isPostRequest() ) {            
             if ( $scope->util->getAction() == 'create' ) {
                 $this->data['model']->map($scope->util->getPostValues());
                 $this->data["errors"] = $this->service->validate($this->data['model']);
                 $this->data["saved"] = $this->service->create($this->data['model']);
+                //if saved is true change have user log in
+                if($this->data["saved"]){
+                    $this->data['model']->reset();   
+                    $viewPage = 'login';
+                }
             }                       
         }        
         $scope->view = $this->data;

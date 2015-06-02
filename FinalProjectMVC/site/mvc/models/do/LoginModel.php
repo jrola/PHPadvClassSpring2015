@@ -8,25 +8,50 @@
 
 namespace App\models\services;
 
-
-class LoginModel extends BaseModel {
+class LoginModel extends BaseModel{
+    private $UserID;
+    private $LoginID;
+    private $Email;
+    private $Password;
+    private $Successful;
     
-    private $email;
-    private $password;
+    function getUserID(){
+        return $this->UserID;
+    }
+    
+    function getLoginID(){
+        return $this->LoginID;
+    }
     
     function getEmail() {
-        return $this->email;
+        return $this->Email;
     }
 
-    function getUserPassword() {
-        return $this->password;
+    function getPassword() {
+        return $this->Password;
     }
-
+    
+    function getSuccessful(){
+        return $this->Successful;
+    }
+    
+    function setUserID($userid){
+        $this->UserID = $userid;
+    }
+    
     function setEmail($email) {
-        $this->username = $email;
+        $this->Email = $email;
+    }
+    
+    function setLoginID($loginid){
+        $this->LoginID = $loginid;
     }
 
-    function setUserPassword($userpassword) {
-        $this->password = $userpassword;
+    function setPassword($userpassword) {
+        $this->Password = $userpassword;
     }
+    function setSuccessful($successful){
+        $this->Successful  = $successful;
+    }
+    
 }

@@ -25,7 +25,7 @@ class Validator implements IService {
         return (preg_match("/^(?=.*[0-9])(?=.*[a-z])(\S+)$/i",$password) && is_string($password) && !empty($password));
     }
     public function zipIsValid($zip){
-        return (preg_match("/^[0-9]{5}$/",$zip) && is_numeric($zip) &&  !empty($email) && filter_var($zip, FILTER_VALIDATE_INT) !==false);
+        return (preg_match("/^[0-9]{5}$/",$zip) && is_numeric($zip) &&  !empty($zip));
     }
     public function commentIsValid($comment){
         return (!empty($comment) && is_string($comment));
