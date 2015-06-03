@@ -65,7 +65,13 @@ class PhotoService implements IService {
     public function getImages(IModel $model,$array)    {
         return $this->getPhotoDAO()->getImages($model,$array);
     }
+    public function deletePhoto($id){
+        return $this->getPhotoDAO()->delete($id);
+    }
+    public function getImageDirectory(IModel $model){
+        return $this->getPhotoDAO()->getImageDirectory($model);
+    }
     public function getNewPhotoModel() {
         return clone $this->getModel();
-    }   
+    }       
 }

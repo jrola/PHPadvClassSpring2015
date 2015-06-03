@@ -43,11 +43,12 @@ class PhotoDAO extends BaseDAO implements IDAO{
         $db = $this->getDB();
         $binds = array( ":ImageSize" => $model->getImageSize(),
                          ":Directory" => $model->getDirectory(),
-                         ":ImageName" => $model->getImageName()
+                         ":ImageName" => $model->getImageName(),
+                         ":Comment" => $model->getComment()
                     );
        
         if ( !$this->idExist($model->getImageId()) ) {                             
-            $stmt = $db->prepare("INSERT INTO images SET ImageSize = :ImageSize, Directory = :Directory, ImageName =:ImageName");
+            $stmt = $db->prepare("INSERT INTO images SET ImageSize = :ImageSize, Directory = :Directory, ImageName =:ImageName,Comment =:Comment");
             if ( $stmt->execute($binds) && $stmt->rowCount() > 0 ) {                              
                 //gets the last id inserted to the table
                $model->setImageID(intval($db->lastInsertId()));
@@ -92,7 +93,7 @@ class PhotoDAO extends BaseDAO implements IDAO{
     
     public function delete($id) {          
         $db = $this->getDB();         
-        $stmt = $db->prepare("Delete FROM images WHERE imageid = :ImageID");
+        $stmt = $db->prepare("Delete FROM images WHERE ImageID = :ImageID");
 
         if ( $stmt->execute(array(':ImageID' => $id)) && $stmt->rowCount() > 0 ) {
             return true;
@@ -122,6 +123,27 @@ class PhotoDAO extends BaseDAO implements IDAO{
         }
         return false;         
     }
+    public function getImageDirectory($model)
+    {
+        $userid = $model->getUserID();
+        $imageid = $model->getImageID();
+        $db = $this->getDB();
+        if ( $this->useridExist($userid) ) {  
+            //get user id based on the email entered
+            $stmt = $db->prepare("SELECT ImageID,Directory,Comment FROM images WHERE ImageID  = :ImageID");          
+            //if there is an value that matches user entry and row count is greater than 0
+            if ( $stmt->execute(array(':ImageID' => $imageid)) && $stmt->rowCount() > 0 ) {   
+                //get the data                 
+                $array = array();
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {  
+                    array_push($array, $row);
+                } 
+                //return just the user id
+                return $array;
+            }
+        }
+        return false;         
+    }
     
     public function getuserImages($model)
     {
@@ -147,18 +169,19 @@ class PhotoDAO extends BaseDAO implements IDAO{
     {
         $arrayDirectory = array();
         $userid = $model->getUserID();
+        $deleteed = 1;
         $db = $this->getDB();
         //loop through each image id in the array this will get the directories from the imageid
         foreach ($array as $key => $value) { 
             if ($this->useridExist($userid) ) { 
                 //get user id based on the email entered
-                $stmt = $db->prepare("SELECT Directory FROM images WHERE ImageID  = :ImageID");          
+                $stmt = $db->prepare("SELECT Directory,ImageID,Comment FROM images WHERE ImageID  = :ImageID");          
                 //if there is an value that matches user entry and row count is greater than 0
                 if ( $stmt->execute(array(':ImageID' => $value['ImageID'])) && $stmt->rowCount() > 0 ) {                    
                     //get the data                
                     //get the row of informaiton
                     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                    //push the row into the new array
+                    //push the row into the new arrays 
                     array_push($arrayDirectory, $row);                    
                 }
             }
@@ -169,7 +192,7 @@ class PhotoDAO extends BaseDAO implements IDAO{
     public function photoContent($model){
         try {
             $username=$this->getEmail($model);
-            $directory="C:/Users/Chris2Wavey/Desktop/xampp/htdocs/PHPadvClassSpring2015/FinalProjectMVC/site/mvc/models/dao/".$username;
+            $directory="img/".$username;
             if(!file_exists ($directory)){
                 mkdir($directory);
             }
@@ -217,7 +240,7 @@ class PhotoDAO extends BaseDAO implements IDAO{
             // On this example, obtain safe unique name from its binary data.
 
             $fileName =  sha1_file($_FILES['upfile']['tmp_name']); 
-            $location = sprintf('C:/Users/Chris2Wavey/Desktop/xampp/htdocs/PHPadvClassSpring2015/FinalProjectMVC/site/mvc/models/dao/'.$username.'/%s.%s', $fileName, $ext);
+            $location = sprintf($directory.'/%s.%s', $fileName, $ext);
             
             if ( !move_uploaded_file( $_FILES['upfile']['tmp_name'], $location) ) {
                 throw new RuntimeException('Failed to move uploaded file.');

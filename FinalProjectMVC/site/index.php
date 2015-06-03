@@ -181,17 +181,19 @@ final class Index {
         $_loginmodel = new LoginModel();
         $_photomodel = new PhotoModel();
         
-        
+        //Mapping Dao
         $_signupDAO = new SignupDAO($_pdo->getDB(), $_signupmodel, $_log);
         $_loginDAO = new LoginDAO($_pdo->getDB(), $_loginmodel, $_log);
         $_photoDAO = new PhotoDAO($_pdo->getDB(), $_photomodel, $_log);
         
+        //Mapping the services
         $_signupService = new SignupService($_signupDAO, $_validator, $_signupmodel);
         $_loginService = new LoginService($_loginDAO, $_validator,$_loginmodel); 
         $_photoService = new PhotoService($_photoDAO, $_validator,$_photomodel); 
         
         //http://php.net/manual/en/functions.anonymous.php
-
+        
+        //mapping views to a controller and a service
         $index->addDIController('intro', function() {            
             return new \APP\controller\IntroController();
         })        
@@ -206,6 +208,9 @@ final class Index {
         })
         ->addDIController('logout', function(){           
             return new \APP\controller\LogoutController();
+        })
+        ->addDIController('uploadphotoedit', function() use ($_photoService){           
+            return new \APP\controller\PhotoController($_photoService);
         })
         ;
         // run application!

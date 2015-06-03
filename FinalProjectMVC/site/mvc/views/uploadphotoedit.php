@@ -48,7 +48,7 @@
         <div class="form-group">
             <div class="col-sm-4 col-sm-offset-4">
                 <label for="comment">Comment:</label>
-                <textarea class="form-control" name="Comment"rows="5" id="comment"></textarea>
+                <textarea class="form-control" name="Comment"rows="5" id="comment"><?php $this->data['Comment']?></textarea>
             </div>
         </div>
         <br />
@@ -69,26 +69,23 @@
                     <ul>              
                         <?php
                             foreach ($scope->view['directories'] as $value) {
-                                echo '
-                                    <li><img src='.$value["Directory"].' width="300" height="300" alt="">
+                                echo '<form action="#" method="post">
+                                        <li><img src='.$value["Directory"].' width="300" height="300" alt="">
                                             <p>'.$value["Comment"].'</p>                                            
-                                        <form action="#" method="post">
                                             <input type="hidden" name="ImageID" value="'.$value['ImageID'].'" />
                                             <input type="hidden" name="action" value="update" />
                                                 <br />
                                             <button type="submit" value="update" class="btn btn-default btn-lg" >
                                                 Update
                                             </button>
-                                        </form>
-                                        <form action="#" method="post">
-                                                <input type="hidden" name="ImageID" value="'.$value['ImageID'].'" />
-                                                <input type="hidden" name="action" value="delete" />
-                                                    <br />
-                                                <button type="submit" value="delete" class="btn btn-default btn-lg" >
-                                                    Delete
-                                                </button>
-                                        </form>
-                                    </li>';                                
+                                            <input type="hidden" name="ImageID" value="'.$value['ImageID'].'" />
+                                            <input type="hidden" name="action" value="delete" />
+                                                <br />
+                                            <button type="submit" value="delete" class="btn btn-default btn-lg" >
+                                                Delete
+                                            </button>
+                                        </li>
+                                     </form>';                                
                             }           
                         ?>
                     </ul>

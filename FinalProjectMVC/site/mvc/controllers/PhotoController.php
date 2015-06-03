@@ -40,9 +40,32 @@ class PhotoController extends BaseController implements IController {
                 $images=$this->service->getuserimages($this->data['model']);
                 $this->data['directories']=$this->service->getImages($this->data['model'],$images);               
             }
+            if ( $scope->util->getAction() == 'delete' ) {
+                $this->data['model']->map($scope->util->getPostValues());   
+                $this->service->deletePhoto($scope->util->getPostParam('ImageID'));
+                $images=$this->service->getuserimages($this->data['model']);
+                $this->data['directories']=$this->service->getImages($this->data['model'],$images);    
+            }
+            //updating 
+            if ( $scope->util->getAction() == 'update' ) {
+                //change the view to uploadphotoedit.php
+                $viewPage='uploadphotoedit';
+                //redirect to the contoller attached to the view
+                $scope->util->redirect('uploadphotoedit');
+                $this->data['model']->map($scope->util->getPostValues());   
+                $this->data['comments']=($scope->util->getPostParam('Comment'));     
+                
+                $this->data['ImageData']=$this->service->getImageDirectory($this->data['model']); 
+                foreach ($scope->view['ImageData'] as $value) {
+                    $this->data['UpdateDirectory']=$value['Directory'];
+                    $this->data['UpdateImageID']=$value['ImageID'];
+                    $this->data['UpdateComment']=$value['Comment'];
+                }
+            }
         }else{
             $images=$this->service->getuserimages($this->data['model']);
             $this->data['directories']=$this->service->getImages($this->data['model'],$images);     
+            
         }
         $scope->view = $this->data;
         return $this->view($viewPage,$scope);

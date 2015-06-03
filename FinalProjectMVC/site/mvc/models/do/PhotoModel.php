@@ -15,6 +15,7 @@ class PhotoModel extends BaseModel {
     private $imagename;
     private $imagesize;
     private $directory;
+    private $comment;
     
     function getUserID(){
         return $this->UserID;
@@ -33,6 +34,9 @@ class PhotoModel extends BaseModel {
     function getDirectory() {
         return $this->directory;
     }
+    function getComment() {
+        return $this->comment;
+    }
     
     function setImageID($ImageID) {
         $this->imageid = $ImageID;
@@ -50,6 +54,9 @@ class PhotoModel extends BaseModel {
     
     function setDirectory($directory) {
         $this->directory = $directory;
+    }
+    function setComment($comment) {
+        $this->comment = $comment;
     }
     
        
